@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Common\Attributes\" />
     <Folder Include="Common\Behaviours\" />
-    <Folder Include="Common\Exceptions\" />
     <Folder Include="Common\Helpers\" />
     <Folder Include="Common\Interfaces\" />
     <Folder Include="Features\Reportes\Commands\" />

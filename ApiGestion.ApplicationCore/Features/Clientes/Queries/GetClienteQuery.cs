@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ApiGestion.ApplicationCore.Features.Clientes.Responses;
+using MediatR;
 
-namespace ApiGestion.ApplicationCore.Features.Clientes.Queries
+namespace ApiGestion.ApplicationCore.Features.Clientes.Queries;
+
+public class GetClienteQuery : IRequest<GetClienteQueryResponde>
 {
-    internal class GetClienteQuery
-    {
-    }
+    public string Identificacion { get; set; } = null!;
 }

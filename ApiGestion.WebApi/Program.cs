@@ -1,8 +1,21 @@
+using ApiGestion.ApplicationCore;
+using ApiGestion.WebApi.Filters;
+using Microsoft.AspNetCore.Mvc;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Add Application Core Dependencies
+
+builder.Services.AddApplicationCore();
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options => 
+        options.Filters.Add<ApiExceptionFilterAttribute>());
+
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+    options.SuppressModelStateInvalidFilter = true);
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
