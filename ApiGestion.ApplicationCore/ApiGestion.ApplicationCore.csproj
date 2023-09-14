@@ -12,9 +12,7 @@
     <Folder Include="Common\Exceptions\" />
     <Folder Include="Common\Helpers\" />
     <Folder Include="Common\Interfaces\" />
-    <Folder Include="Domain\" />
     <Folder Include="Features\" />
-    <Folder Include="Infrastructure\Persistence\" />
   </ItemGroup>
 
   <ItemGroup>
