@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
 
-namespace ApiGestion.ApplicationCore.Features.Clientes.Commands
+namespace ApiGestion.ApplicationCore.Features.Clientes.Commands;
+
+public class DeleteClienteCommand : IRequest
 {
-    internal class DeleteClienteCommand
-    {
-    }
+    public string Identification { get; set; } = null!;
 }

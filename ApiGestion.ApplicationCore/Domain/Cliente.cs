@@ -6,7 +6,7 @@ public partial class Cliente
 
     public string Contrasena { get; set; } = null!;
 
-    public string Estado { get; set; } = null!;
+    public bool Estado { get; set; }
 
     public int PersonaId { get; set; }
 

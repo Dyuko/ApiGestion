@@ -1,16 +1,12 @@
-﻿using ApiGestion.ApplicationCore.Features.Clientes.Queries;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ApiGestion.ApplicationCore.Domain;
+using AutoMapper;
 
 namespace ApiGestion.ApplicationCore.Features.Clientes.Responses;
 
 public class GetClienteQueryResponde : GetPersonaQueryResponse
 {
     public string Contrasena { get; set; } = null!;
-    public string Estado { get; set; } = null!;
+    public bool Estado { get; set; }
 }
 
 public class GetPersonaQueryResponse

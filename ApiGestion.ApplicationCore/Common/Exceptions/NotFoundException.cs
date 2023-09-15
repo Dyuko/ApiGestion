@@ -2,7 +2,7 @@
 public class NotFoundException : Exception
 {
     public NotFoundException()
-        : base()
+        : base("No entities found")
     {
     }
 

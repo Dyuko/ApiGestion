@@ -1,30 +1,25 @@
-﻿using ApiGestion.ApplicationCore.Common.Exceptions;
-using ApiGestion.ApplicationCore.Domain;
-using ApiGestion.ApplicationCore.Features.Clientes.Queries;
+﻿using ApiGestion.ApplicationCore.Features.Clientes.Queries;
 using ApiGestion.ApplicationCore.Features.Clientes.Responses;
-using ApiGestion.ApplicationCore.Infrastructure.Persistence;
+using ApiGestion.ApplicationCore.Infrastructure.Repositories;
+using AutoMapper;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
-using Nelibur.ObjectMapper;
 
 namespace ApiGestion.ApplicationCore.Features.Clientes.Handlers;
 
 public class GetClienteQueryHandler : IRequestHandler<GetClienteQuery, GetClienteQueryResponde>
 {
-    private readonly GestionDbContext _context;
+    private readonly IClienteRepository _clienteRepository;
+    private readonly IMapper _mapper;
 
-    public GetClienteQueryHandler(GestionDbContext context)
+    public GetClienteQueryHandler(IClienteRepository clienteRepository, IMapper mapper)
     {
-        _context = context;
+        _clienteRepository = clienteRepository;
+        _mapper = mapper;
     }
 
     public async Task<GetClienteQueryResponde> Handle(GetClienteQuery request, CancellationToken cancellationToken)
     {
-        var cliente = await _context.Clientes.AsNoTracking()
-                    .Include(cliente => cliente.Persona)
-                    .FirstOrDefaultAsync(cliente => cliente.Persona.Identificacion.Equals(request.Identificacion), cancellationToken: cancellationToken)
-                    ?? throw new NotFoundException(nameof(Cliente), request.Identificacion);
-
-        return TinyMapper.Map<GetClienteQueryResponde>(cliente);
+        var cliente = await _clienteRepository.GetClienteByIdentificacion(request.Identificacion, cancellationToken);
+        return _mapper.Map<GetClienteQueryResponde>(cliente);
     }
 }
