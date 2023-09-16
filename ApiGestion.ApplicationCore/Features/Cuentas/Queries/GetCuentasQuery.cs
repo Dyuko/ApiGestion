@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ApiGestion.ApplicationCore.Features.Cuentas.Responses;
+using MediatR;
 
-namespace ApiGestion.ApplicationCore.Features.Cuentas.Queries
+namespace ApiGestion.ApplicationCore.Features.Cuentas.Queries;
+
+public class GetCuentasQuery : IRequest<List<GetCuentaQueryResponse>>
 {
-    internal class GetCuentasQuery
-    {
-    }
 }

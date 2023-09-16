@@ -6,13 +6,13 @@ using MediatR;
 
 namespace ApiGestion.ApplicationCore.Features.Clientes.Handlers;
 
-public class CreateClienteCommandHandler : IRequestHandler<CreateClienteCommand>
+public class CreateCuentaCommandHandler : IRequestHandler<CreateClienteCommand>
 {
 
     private readonly IMapper _mapper;
     private readonly IClienteRepository _clienteRepository;
 
-    public CreateClienteCommandHandler(IMapper mapper, IClienteRepository clienteRepository)
+    public CreateCuentaCommandHandler(IMapper mapper, IClienteRepository clienteRepository)
     {
         _mapper = mapper;
         _clienteRepository = clienteRepository;

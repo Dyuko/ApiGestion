@@ -3,7 +3,7 @@ using MediatR;
 
 namespace ApiGestion.ApplicationCore.Features.Cuentas.Queries;
 
-public class GetCuentaQuery : IRequest<GetCuentaQueryResponse>
+public class GetCuentasClienteQuery : IRequest<List<GetCuentaQueryResponse>>
 {
-    public string NumeroCuenta { get; set; } = null!;
+    public string IdentificacionCliente { get; set; } = null!;
 }

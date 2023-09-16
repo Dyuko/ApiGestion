@@ -8,10 +8,7 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
 {
     private readonly ILogger<ApiExceptionFilterAttribute> _logger;
 
-    public ApiExceptionFilterAttribute(ILogger<ApiExceptionFilterAttribute> logger)
-    {
-        _logger = logger;
-    }
+    public ApiExceptionFilterAttribute(ILogger<ApiExceptionFilterAttribute> logger) => _logger = logger;
 
     public override void OnException(ExceptionContext context)
     {
@@ -28,6 +25,12 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
             case ForbiddenAccessException:
                 HandleForbiddenAccessException(context);
                 break;
+            case DuplicateIdentifierException duplicateEx:
+                HandleDuplicateIdentifierException(context, duplicateEx);
+                break;
+            case NoContentException:
+                HandleNoContentException(context);
+                break;
             default:
                 HandleUnknownException(context);
                 break;
@@ -37,7 +40,7 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
     }
 
 
-    private void HandleValidationException(ExceptionContext context, ValidationException exception)
+    private static void HandleValidationException(ExceptionContext context, ValidationException exception)
     {
         var details = new ValidationProblemDetails(exception.Errors)
         {
@@ -49,7 +52,7 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
         context.ExceptionHandled = true;
     }
 
-    private void HandleInvalidModelStateException(ExceptionContext context)
+    private static void HandleInvalidModelStateException(ExceptionContext context)
     {
         var details = new ValidationProblemDetails(context.ModelState)
         {
@@ -61,7 +64,7 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
         context.ExceptionHandled = true;
     }
 
-    private void HandleNotFoundException(ExceptionContext context, NotFoundException exception)
+    private static void HandleNotFoundException(ExceptionContext context, NotFoundException exception)
     {
         var details = new ProblemDetails()
         {
@@ -75,7 +78,7 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
         context.ExceptionHandled = true;
     }
 
-    private void HandleForbiddenAccessException(ExceptionContext context)
+    private static void HandleForbiddenAccessException(ExceptionContext context)
     {
         var details = new ProblemDetails
         {
@@ -92,7 +95,21 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
         context.ExceptionHandled = true;
     }
 
-    private void HandleUnknownException(ExceptionContext context)
+    private static void HandleDuplicateIdentifierException(ExceptionContext context, DuplicateIdentifierException exception)
+    {
+        var details = new ProblemDetails()
+        {
+            Type = "https://tools.ietf.org/html/rfc7231#section-6.5.8",
+            Title = "Conflict",
+            Detail = exception.Message
+        };
+
+        context.Result = new ConflictObjectResult(details);
+
+        context.ExceptionHandled = true;
+    }
+
+    private static void HandleUnknownException(ExceptionContext context)
     {
         if (!context.ModelState.IsValid)
         {
@@ -111,6 +128,13 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
         {
             StatusCode = StatusCodes.Status500InternalServerError
         };
+
+        context.ExceptionHandled = true;
+    }
+
+    private static void HandleNoContentException(ExceptionContext context)
+    {
+        context.Result = new NoContentResult();
 
         context.ExceptionHandled = true;
     }

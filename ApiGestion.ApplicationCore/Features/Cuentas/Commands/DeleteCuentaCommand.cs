@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
 
-namespace ApiGestion.ApplicationCore.Features.Cuentas.Commands
+namespace ApiGestion.ApplicationCore.Features.Cuentas.Commands;
+
+public class DeleteCuentaCommand : IRequest
 {
-    internal class DeleteCuentaCommand
-    {
-    }
+    public string NumeroCuenta { get; set; } = null!;
 }

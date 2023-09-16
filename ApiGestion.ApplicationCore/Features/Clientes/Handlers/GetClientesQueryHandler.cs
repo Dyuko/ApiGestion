@@ -24,7 +24,7 @@ public class GetClientesQueryHandler : IRequestHandler<GetClientesQuery, List<Ge
 
         if (clientes.Count == 0)
         {
-            throw new NotFoundException();
+            throw new NoContentException();
         }
 
         return _mapper.Map<List<GetClienteQueryResponde>>(clientes);

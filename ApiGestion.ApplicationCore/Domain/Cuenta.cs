@@ -4,11 +4,12 @@ public partial class Cuenta
 {
     public int CuentaId { get; set; }
 
-    public string? NumeroCuenta { get; set; }
+    public string NumeroCuenta { get; set; } = null!;
 
-    public string? Tipo { get; set; }
+    public string Tipo { get; set; } = null!;
 
     public decimal SaldoInicial { get; set; }
+    public decimal SaldoDisponible { get; set; }
 
     public bool Estado { get; set; }
 

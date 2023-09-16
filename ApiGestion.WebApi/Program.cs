@@ -10,11 +10,14 @@ builder.Services.AddApplicationCore();
 
 // Add services to the container.
 
-builder.Services.AddControllers(options => 
-        options.Filters.Add<ApiExceptionFilterAttribute>());
+builder.Services.AddControllers(options =>
+    options.Filters.Add<ApiExceptionFilterAttribute>());
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
-    options.SuppressModelStateInvalidFilter = true);
+{
+    options.SuppressInferBindingSourcesForParameters = true;
+    options.SuppressModelStateInvalidFilter = true;
+});
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

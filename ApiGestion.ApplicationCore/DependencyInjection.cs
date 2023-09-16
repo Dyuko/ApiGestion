@@ -13,6 +13,7 @@ public static class DependencyInjection
         services.AddDbContext<GestionDbContext>();
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddScoped<IClienteRepository, ClienteRepository>();
+        services.AddScoped<ICuentaRepository, CuentaRepository>();
         return services;
     }
 }

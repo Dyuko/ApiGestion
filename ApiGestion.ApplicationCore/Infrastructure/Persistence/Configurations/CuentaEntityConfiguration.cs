@@ -21,6 +21,9 @@ public class CuentaEntityConfiguration : IEntityTypeConfiguration<Cuenta>
 
         entity.Property(e => e.SaldoInicial)
             .HasColumnType("decimal(18, 2)");
+        
+        entity.Property(e => e.SaldoDisponible)
+            .HasColumnType("decimal(18, 2)");
 
         entity.Property(e => e.Tipo)
             .HasMaxLength(50)

@@ -1,5 +1,6 @@
 ﻿using ApiGestion.ApplicationCore.Domain;
 using ApiGestion.ApplicationCore.Infrastructure.Persistence.Configurations;
+using EntityFramework.Exceptions.SqlServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -16,7 +17,7 @@ public class GestionDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+        optionsBuilder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")).UseExceptionProcessor();
     }
 
     public virtual DbSet<Cliente> Clientes { get; set; }

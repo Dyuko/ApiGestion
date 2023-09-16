@@ -3,7 +3,6 @@ using ApiGestion.ApplicationCore.Features.Clientes.Queries;
 using ApiGestion.ApplicationCore.Features.Clientes.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
 
 namespace ApiGestion.WebApi.Controllers;
 
@@ -12,18 +11,16 @@ namespace ApiGestion.WebApi.Controllers;
 public class ClientesController : ControllerBase
 {
     private readonly IMediator _mediator;
-    public ClientesController(IMediator mediator)
-    {
+    public ClientesController(IMediator mediator) =>
         _mediator = mediator;
-    }
-
-    [HttpGet("{Identificacion}")]
-    public Task<GetClienteQueryResponde> GetClienteByIdentificacion([FromRoute] GetClienteQuery query) =>
-        _mediator.Send(query);
 
     [HttpGet]
     public Task<List<GetClienteQueryResponde>> GetClientes() =>
         _mediator.Send(new GetClientesQuery());
+
+    [HttpGet("{Identificacion}")]
+    public Task<GetClienteQueryResponde> GetClienteByIdentificacion([FromRoute] GetClienteQuery query) =>
+        _mediator.Send(query);
 
     [HttpPost]
     public async Task<IActionResult> CreateCliente([FromBody] CreateClienteCommand command)
@@ -32,17 +29,17 @@ public class ClientesController : ControllerBase
         return StatusCode(StatusCodes.Status201Created);
     }
 
-    [HttpPut]
-    public async Task<IActionResult> UpdateCliente([FromBody] UpdateClienteCommand command)
+    [HttpPut("{Identificacion}")]
+    public async Task<IActionResult> UpdateCliente(UpdateClienteCommand command)
     {
         await _mediator.Send(command);
-        return Ok();
+        return StatusCode(StatusCodes.Status204NoContent);
     }
 
-    [HttpDelete]
-    public async Task<IActionResult> DeleteCliente([FromBody] DeleteClienteCommand command)
+    [HttpDelete("{Identificacion}")]
+    public async Task<IActionResult> DeleteCliente([FromRoute] DeleteClienteCommand command)
     {
         await _mediator.Send(command);
-        return Ok();
+        return StatusCode(StatusCodes.Status204NoContent);
     }
 }

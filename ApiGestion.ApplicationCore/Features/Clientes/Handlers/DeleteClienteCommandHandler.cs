@@ -1,4 +1,5 @@
 ﻿using ApiGestion.ApplicationCore.Common.Exceptions;
+using ApiGestion.ApplicationCore.Domain;
 using ApiGestion.ApplicationCore.Features.Clientes.Commands;
 using ApiGestion.ApplicationCore.Infrastructure.Repositories;
 using MediatR;
@@ -16,6 +17,8 @@ public class DeleteClienteCommandHandler : IRequestHandler<DeleteClienteCommand>
 
     public async Task Handle(DeleteClienteCommand command, CancellationToken cancellationToken)
     {
-        await _clienteRepository.DeleteClienteAsync(command.Identification, cancellationToken);
+        var cliente = await _clienteRepository.GetClienteByIdentificacionAsync(command.Identificacion, cancellationToken)
+            ?? throw new NotFoundException(nameof(Cliente), command.Identificacion);
+        await _clienteRepository.DeleteClienteAsync(cliente, cancellationToken);
     }
 }
