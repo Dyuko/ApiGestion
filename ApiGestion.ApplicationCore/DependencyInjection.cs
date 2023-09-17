@@ -14,6 +14,7 @@ public static class DependencyInjection
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddScoped<IClienteRepository, ClienteRepository>();
         services.AddScoped<ICuentaRepository, CuentaRepository>();
+        services.AddScoped<IMovimientoRepository, MovimientoRepository>();
         return services;
     }
 }

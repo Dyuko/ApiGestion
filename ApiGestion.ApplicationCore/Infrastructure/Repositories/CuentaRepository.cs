@@ -25,13 +25,13 @@ public class CuentaRepository : ICuentaRepository
         }
     }
 
-    public async Task<List<Cuenta>> GetCuentas(CancellationToken cancellationToken) => 
+    public async Task<List<Cuenta>> GetCuentas(CancellationToken cancellationToken) =>
         await _context.Cuenta.AsNoTracking()
             .Include(cuenta => cuenta.Cliente)
             .Include(cuenta => cuenta.Cliente.Persona)
             .ToListAsync(cancellationToken);
 
-    public async Task<Cuenta?> GetCuentaByNumeroAsync(string numeroCuenta, CancellationToken cancellationToken) => 
+    public async Task<Cuenta?> GetCuentaByNumeroAsync(string numeroCuenta, CancellationToken cancellationToken) =>
         await _context.Cuenta.AsNoTracking()
             .Include(cuenta => cuenta.Cliente)
             .Include(cuenta => cuenta.Cliente.Persona)
@@ -43,7 +43,7 @@ public class CuentaRepository : ICuentaRepository
         await _context.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task<List<Cuenta>> GetCuentasCliente(string identificacionCliente, CancellationToken cancellationToken) => 
+    public async Task<List<Cuenta>> GetCuentasCliente(string identificacionCliente, CancellationToken cancellationToken) =>
         await _context.Cuenta.AsNoTracking()
             .Include(cuenta => cuenta.Cliente)
             .Include(cuenta => cuenta.Cliente.Persona)
@@ -55,4 +55,13 @@ public class CuentaRepository : ICuentaRepository
         _context.Cuenta.Remove(cuenta);
         await _context.SaveChangesAsync(cancellationToken);
     }
+
+    public async Task<decimal> GetTotalRetiroFecha(string numeroCuenta, DateTime fecha, CancellationToken cancellationToken) => 
+        await _context.Movimientos
+            .Include(movimiento => movimiento.Cuenta)
+            .Where(m =>
+                m.Cuenta.NumeroCuenta.Equals(numeroCuenta) &&
+                m.Valor < 0 &&
+                m.Fecha.Date == fecha.Date)
+            .SumAsync(m => m.Valor, cancellationToken);
 }

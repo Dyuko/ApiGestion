@@ -31,6 +31,9 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
             case NoContentException:
                 HandleNoContentException(context);
                 break;
+            case BusinessException businessException:
+                HandleBusinessException(context, businessException);
+                break;
             default:
                 HandleUnknownException(context);
                 break;
@@ -135,6 +138,20 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
     private static void HandleNoContentException(ExceptionContext context)
     {
         context.Result = new NoContentResult();
+
+        context.ExceptionHandled = true;
+    }
+
+    private static void HandleBusinessException(ExceptionContext context, BusinessException exception)
+    {
+        var details = new ProblemDetails()
+        {
+            Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+            Title = "Bad Request",
+            Detail = exception.Message
+        };
+
+        context.Result = new BadRequestObjectResult(details);
 
         context.ExceptionHandled = true;
     }

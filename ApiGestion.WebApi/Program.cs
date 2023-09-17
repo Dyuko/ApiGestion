@@ -1,8 +1,14 @@
 using ApiGestion.ApplicationCore;
 using ApiGestion.WebApi.Filters;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Debug()
+    .WriteTo.Console()
+    .CreateLogger();
 
 // Add Application Core Dependencies
 

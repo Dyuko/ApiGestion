@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
 
-namespace ApiGestion.ApplicationCore.Features.Movimientos.Commands
+namespace ApiGestion.ApplicationCore.Features.Movimientos.Commands;
+
+public class CreateMovimientoCommand : IRequest
 {
-    internal class CreateMovimientoCommand
-    {
-    }
+    public decimal Valor { get; set; }
+    public string NumeroCuenta { get; set; } = null!;
 }

@@ -21,12 +21,12 @@ public class CreateCuentaCommandHandler : IRequestHandler<CreateCuentaCommand>
         _clienteRepository = clienteRepository;
     }
 
-    public async Task Handle(CreateCuentaCommand request, CancellationToken cancellationToken)
+    public async Task Handle(CreateCuentaCommand command, CancellationToken cancellationToken)
     {
-        var newCuenta = _mapper.Map<Cuenta>(request);
+        var newCuenta = _mapper.Map<Cuenta>(command);
 
-        var cliente = await _clienteRepository.GetClienteByIdentificacionAsync(request.IdentificacionCliente, cancellationToken)
-            ?? throw new NotFoundException(nameof(Cliente), request.IdentificacionCliente);
+        var cliente = await _clienteRepository.GetClienteByIdentificacionAsync(command.IdentificacionCliente, cancellationToken)
+            ?? throw new NotFoundException(nameof(Cliente), command.IdentificacionCliente);
 
         newCuenta.ClienteId = cliente.ClienteId;
 
