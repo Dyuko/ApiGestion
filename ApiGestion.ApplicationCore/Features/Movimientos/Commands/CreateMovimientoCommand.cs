@@ -13,7 +13,7 @@ public class CreateMovimientoCommandValidator : AbstractValidator<CreateMovimien
 {
     public CreateMovimientoCommandValidator()
     {
-        RuleFor(command => command.Valor).GreaterThan(0);
+        RuleFor(command => command.Valor).NotEqual(decimal.Zero);
         RuleFor(command => command.NumeroCuenta).NotEmpty().MaximumLength(20);
     }
 }

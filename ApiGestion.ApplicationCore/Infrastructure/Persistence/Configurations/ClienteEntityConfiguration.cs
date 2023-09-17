@@ -23,6 +23,6 @@ public class ClienteEntityConfiguration : IEntityTypeConfiguration<Cliente>
         entity.HasOne(d => d.Persona)
             .WithMany(p => p.Clientes)
             .HasForeignKey(d => d.PersonaId)
-            .OnDelete(DeleteBehavior.ClientCascade);
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

@@ -1,4 +1,6 @@
 ﻿using ApiGestion.ApplicationCore.Features.Movimientos.Commands;
+using ApiGestion.ApplicationCore.Features.Movimientos.Queries;
+using ApiGestion.ApplicationCore.Features.Movimientos.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,4 +20,8 @@ public class MovimientosController : ControllerBase
         await _mediator.Send(command);
         return StatusCode(StatusCodes.Status201Created);
     }
+
+    [HttpGet]
+    public Task<List<GetMovimientoQueryResponse>> GetMovimientos() =>
+        _mediator.Send(new GetMovimientoQuery());
 }

@@ -9,8 +9,6 @@
   <ItemGroup>
     <Folder Include="Common\Attributes\" />
     <Folder Include="Common\Interfaces\" />
-    <Folder Include="Features\Movimientos\MapsProfile\" />
-    <Folder Include="Features\Movimientos\Queries\" />
   </ItemGroup>
 
   <ItemGroup>

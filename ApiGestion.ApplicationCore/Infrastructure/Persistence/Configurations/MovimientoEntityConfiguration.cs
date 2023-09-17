@@ -28,6 +28,6 @@ public class MovimientoEntityConfiguration : IEntityTypeConfiguration<Movimiento
         entity.HasOne(d => d.Cuenta)
             .WithMany(p => p.Movimientos)
             .HasForeignKey(d => d.CuentaId)
-            .OnDelete(DeleteBehavior.ClientSetNull);
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

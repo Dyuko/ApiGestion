@@ -41,7 +41,7 @@ public class CuentasController : ControllerBase
         return StatusCode(StatusCodes.Status204NoContent);
     }
 
-    [HttpPut]
+    [HttpPut("{NumeroCuenta}")]
     public async Task<IActionResult> UpdateCuenta(UpdateCuentaCommand command)
     {
         await _mediator.Send(command);

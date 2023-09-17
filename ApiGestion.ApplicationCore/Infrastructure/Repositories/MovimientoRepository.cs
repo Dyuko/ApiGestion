@@ -1,5 +1,6 @@
 ﻿using ApiGestion.ApplicationCore.Domain;
 using ApiGestion.ApplicationCore.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApiGestion.ApplicationCore.Infrastructure.Repositories;
 
@@ -14,4 +15,11 @@ public class MovimientoRepository : IMovimientoRepository
         _context.Movimientos.Add(movimiento);
         await _context.SaveChangesAsync(cancellationToken);
     }
+
+    public async Task<List<Movimiento>> GetMovimientosAsync(CancellationToken cancellationToken) => 
+        await _context.Movimientos.AsNoTracking()
+            .Include(movimiento => movimiento.Cuenta)
+            .ThenInclude(cuenta => cuenta.Cliente)
+            .ThenInclude(cliente => cliente.Persona)
+            .ToListAsync(cancellationToken);
 }

@@ -31,6 +31,6 @@ public class CuentaEntityConfiguration : IEntityTypeConfiguration<Cuenta>
 
         entity.HasOne(d => d.Cliente).WithMany(p => p.Cuenta)
             .HasForeignKey(d => d.ClienteId)
-            .OnDelete(DeleteBehavior.ClientSetNull);
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

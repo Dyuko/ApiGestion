@@ -1,7 +1,7 @@
 ﻿using ApiGestion.ApplicationCore.Domain;
 
 namespace ApiGestion.ApplicationCore.Infrastructure.Persistence;
-public class GestionDbContextSeed
+public static class GestionDbContextSeed
 {
     public static async Task SeedDataAsync(GestionDbContext context)
     {
