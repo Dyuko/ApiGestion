@@ -6,7 +6,7 @@ public partial class Persona
 
     public string Nombre { get; set; } = null!;
 
-    public string Genero { get; set; } = null!;
+    public Genero Genero { get; set; }
 
     public DateTime? FechaNacimiento { get; set; }
 

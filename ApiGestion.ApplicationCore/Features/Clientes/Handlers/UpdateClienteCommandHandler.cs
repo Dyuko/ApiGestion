@@ -26,7 +26,7 @@ public class UpdateClienteCommandHandler : IRequestHandler<UpdateClienteCommand>
         cliente.Persona.Direccion = command.Body.Direccion;
         cliente.Persona.Telefono = command.Body.Telefono;
         cliente.Contrasena = command.Body.Contrasena;
-        cliente.Estado = command.Body.Estado;
+        cliente.Estado = command.Body.Estado!.Value;
 
         await _clienteRepository.UpdateClienteAsync(cliente, cancellationToken);
     }

@@ -1,7 +1,10 @@
 using ApiGestion.ApplicationCore;
 using ApiGestion.WebApi.Filters;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +20,15 @@ builder.Services.AddApplicationCore();
 // Add services to the container.
 
 builder.Services.AddControllers(options =>
-    options.Filters.Add<ApiExceptionFilterAttribute>());
+    options.Filters.Add<ApiExceptionFilterAttribute>())
+    .AddJsonOptions(o =>
+    {
+        o.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+        o.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
+
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddFluentValidationClientsideAdapters();
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {

@@ -1,6 +1,7 @@
 ﻿using ApiGestion.ApplicationCore.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ApiGestion.ApplicationCore.Infrastructure.Persistence.Configurations;
 
@@ -25,7 +26,8 @@ public class PersonaEntityConfiguration : IEntityTypeConfiguration<Persona>
         entity.Property(e => e.Genero)
             .HasMaxLength(1)
             .IsUnicode(false)
-            .IsFixedLength();
+            .IsFixedLength()
+            .HasConversion(new EnumToStringConverter<Genero>());
 
         entity.Property(e => e.Identificacion)
             .HasMaxLength(20)
