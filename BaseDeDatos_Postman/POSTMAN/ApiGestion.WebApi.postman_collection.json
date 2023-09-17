@@ -1,0 +1,488 @@
+{
+	"info": {
+		"_postman_id": "6a5c62fa-9503-45bb-8854-a4ad4ecb881f",
+		"name": "ApiGestion.WebApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18549045",
+		"_collection_link": "https://www.postman.com/orbital-module-geoscientist-3207311/workspace/api-gestion/collection/18549045-6a5c62fa-9503-45bb-8854-a4ad4ecb881f?action=share&source=collection_link&creator=18549045"
+	},
+	"item": [
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "Clientes",
+					"item": [
+						{
+							"name": "/api/Clientes",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "text/plain"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/Clientes",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Clientes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/api/Clientes",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nombre\": \"Jose Lema\",\n  \"genero\": \"M\",\n  \"fechaNacimiento\": \"1996-05-19\",\n  \"identificacion\": \"4856125\",\n  \"direccion\": \"Otavato sn y principal\",\n  \"telefono\": \"098254785\",\n  \"contrasena\": \"1234\",\n  \"estado\": true\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/Clientes",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Clientes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/api/Clientes/:Identificacion",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "text/plain"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/Clientes/:Identificacion",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Clientes",
+										":Identificacion"
+									],
+									"variable": [
+										{
+											"key": "Identificacion",
+											"value": "4856125"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/api/Clientes/:Identificacion",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nombre\": \"Jose Lema\",\n  \"genero\": \"M\",\n  \"fechaNacimiento\": \"1996-05-19\",\n  \"direccion\": \"Otavato sn y principal\",\n  \"telefono\": \"098254785\",\n  \"contrasena\": \"1234\",\n  \"estado\": true\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/Clientes/:Identificacion",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Clientes",
+										":Identificacion"
+									],
+									"variable": [
+										{
+											"key": "Identificacion",
+											"value": "4856125"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/api/Clientes/:Identificacion",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/Clientes/:Identificacion",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Clientes",
+										":Identificacion"
+									],
+									"variable": [
+										{
+											"key": "Identificacion",
+											"value": "4856125"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Cuentas",
+					"item": [
+						{
+							"name": "/api/Cuentas",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "text/plain"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/Cuentas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Cuentas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/api/Cuentas",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"numeroCuenta\": \"0000001\",\n  \"tipo\": \"Ahorro\",\n  \"saldoInicial\": 5000,\n  \"estado\": true,\n  \"identificacionCliente\": \"4856125\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/Cuentas",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Cuentas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/api/Cuentas",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"tipo\": \"Ahorro\",\n  \"saldoInicial\": 5000,\n  \"saldoDisponible\": 5000000,\n  \"estado\": true,\n  \"identificacionCliente\": \"4856125\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/Cuentas/:NumeroCuenta",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Cuentas",
+										":NumeroCuenta"
+									],
+									"variable": [
+										{
+											"key": "NumeroCuenta",
+											"value": "0000001"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/api/Cuentas/Cliente/:IdentificacionCliente",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "text/plain"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/Cuentas/Cliente/:IdentificacionCliente",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Cuentas",
+										"Cliente",
+										":IdentificacionCliente"
+									],
+									"variable": [
+										{
+											"key": "IdentificacionCliente",
+											"value": "4856125"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/api/Cuentas/:NumeroCuenta",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "text/plain"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/Cuentas/:NumeroCuenta",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Cuentas",
+										":NumeroCuenta"
+									],
+									"variable": [
+										{
+											"key": "NumeroCuenta",
+											"value": "0000001"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/api/Cuentas/:NumeroCuenta",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/Cuentas/:NumeroCuenta",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Cuentas",
+										":NumeroCuenta"
+									],
+									"variable": [
+										{
+											"key": "NumeroCuenta",
+											"value": "0000001"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Movimientos",
+					"item": [
+						{
+							"name": "/api/Movimientos",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"valor\": -1000,\n  \"numeroCuenta\": \"0000001\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/Movimientos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Movimientos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/api/Movimientos",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "text/plain"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/Movimientos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Movimientos"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Reportes",
+					"item": [
+						{
+							"name": "/api/Reportes",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "text/plain"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/Reportes?IdentificacionCliente=4856125&FechaDesde=2023-09-01&FechaHasta=2023-09-30",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Reportes"
+									],
+									"query": [
+										{
+											"key": "IdentificacionCliente",
+											"value": "4856125"
+										},
+										{
+											"key": "FechaDesde",
+											"value": "2023-09-01"
+										},
+										{
+											"key": "FechaHasta",
+											"value": "2023-09-30"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://localhost:7218"
+		}
+	]
+}
